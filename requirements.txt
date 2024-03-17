@@ -6,3 +6,4 @@ mysql-connector-python
 requests
 python-dotenv
 flask
+imap-tools

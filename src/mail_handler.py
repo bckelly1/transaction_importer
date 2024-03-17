@@ -45,25 +45,25 @@ def handle_email_message(email_type, email_fields):
         handle_balance_summary_email(email_fields)
 
 
-def run_financial_email_queries(service):
+def run_financial_email_queries():
     results = {'messages': []}
-    transaction_results = query_transactions(service)
+    transaction_results = query_transactions()
 
     # TODO: Feels kinda hacky I just want to merge the dictionaries and lists
     if 'messages' in transaction_results:
         results['messages'] += transaction_results['messages']
 
-    card_not_present_results = query_card_not_present(service)
+    card_not_present_results = query_card_not_present()
     if 'messages' in card_not_present_results:
-        results['messages'] += query_card_not_present(service)['messages']
+        results['messages'] += query_card_not_present()['messages']
     return results
 
 
 def get_messages(email_type, service):
     if email_type == EmailType.TRANSACTION:
-        results = run_financial_email_queries(service)
+        results = run_financial_email_queries()
     elif email_type == EmailType.BALANCE_SUMMARY:
-        results = query_balance_summary_alert(service)
+        results = query_balance_summary_alert()
     else:
         results = {}
     return results

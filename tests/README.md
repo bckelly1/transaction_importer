@@ -1,0 +1,2 @@
+I tried to write tests for this until I realized I structured the Flask app wrong and I made a mess. I will be reworking
+the tests after I refactor to use a normal Flask structure or go back to a Django structure.

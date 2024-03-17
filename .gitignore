@@ -1,0 +1,8 @@
+/credentials/
+/email_messages/
+/images/
+/.idea/
+.env
+/venv/
+**/__pycache__/
+/.git/

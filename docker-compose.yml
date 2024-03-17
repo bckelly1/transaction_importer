@@ -1,0 +1,26 @@
+version: '3'
+services:
+  home_lab:
+    image: transaction_importer
+    container_name: transaction_importer
+#    dns:
+#      - 192.168.0.12
+    ports:
+      - "5010:5010"
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      - './credentials/:/usr/src/app/credentials'
+#    networks:
+#      - traefik_net
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.docker.network=traefik_net"
+#      - "traefik.http.routers.transaction_importer.rule=Host(`transaction-importer.$MY_DOMAIN`)"
+#      - "traefik.http.routers.transaction_importer.tls.certresolver=dns-cloudflare"
+#      - "traefik.http.services.transaction_importer.loadbalancer.server.port=5010"
+
+#networks:
+#  traefik_net:
+#    external: true

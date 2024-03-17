@@ -28,7 +28,7 @@ def handle_fidelity_card_transaction(text, headers):
     logger.info('detail: ' + original_description + "\n")
     return \
         [{
-            'date': headers['Date'],
+            'date': headers['date'],
             'description': merchant,
             'original_description': original_description,
             'amount': amount,

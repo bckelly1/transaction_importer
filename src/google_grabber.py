@@ -20,52 +20,53 @@ TRANSACTION_LABEL = os.environ.get('TRANSACTION_LABEL', 'INBOX')
 logger = logging.getLogger('google_grabber')
 
 
-def query_mailbox(mail_query='*'):
-    with MailBox(MAIL_IMAP_HOST).login(MAIL_IMAP_USERNAME, MAIL_IMAP_PASSWORD, TRANSACTION_LABEL) as mailbox:
-        for msg in mailbox.fetch(A(subject=mail_query, seen=False), mark_seen=False):
-            print(msg.subject)
-            mailbox.flag(msg.uid, imap_tools.MailMessageFlags.SEEN, True)
+def query_mailbox(mailbox, mail_query='*'):
 
-query_mailbox()
+    results = mailbox.fetch(A(subject=mail_query, seen=False), mark_seen=False)
+    # for result in results:
+    #     print(result)
+
+    return results
+# query_mailbox(mailbox)
 
 # Most useful, gets all transaction across all accounts
-def query_transactions():
-    mail_query = f'"Transaction" {QUERY_TIMERANGE}'
-    return query_mailbox(mail_query)
+def query_transactions(mailbox):
+    mail_query = 'Transaction'
+    return query_mailbox(mailbox, mail_query=mail_query)
 
 
-def query_card_not_present():
+def query_card_not_present(mailbox):
     mail_query = f'"Card Not Present" {QUERY_TIMERANGE}'
-    return query_mailbox(mail_query)
+    return query_mailbox(mailbox, mail_query)
 
 
 # Summary Queries
-def query_daily_balance():
+def query_daily_balance(mailbox):
     mail_query = f'"Daily Balance" {QUERY_TIMERANGE}'
-    return query_mailbox(mail_query)
+    return query_mailbox(mailbox, mail_query)
 
 
-def query_position_summary():
+def query_position_summary(mailbox):
     mail_query = f'"Position Summary" {QUERY_TIMERANGE}'
-    return query_mailbox(mail_query)
+    return query_mailbox(mailbox, mail_query)
 
 
-def query_account_summary():
+def query_account_summary(mailbox):
     mail_query = f'"Account Summary" {QUERY_TIMERANGE}'
-    return query_mailbox(mail_query)
+    return query_mailbox(mailbox, mail_query)
 
 
-def query_balance_summary_alert():
+def query_balance_summary_alert(mailbox):
     mail_query = f'"Balance Summary Alert" {QUERY_TIMERANGE}'
-    return query_mailbox(mail_query)
+    return query_mailbox(mailbox, mail_query)
 
 
 # Debit transactions
-def query_deposit_received():
+def query_deposit_received(mailbox):
     mail_query = f'"Deposit Received" {QUERY_TIMERANGE}'
-    return query_mailbox(mail_query)
+    return query_mailbox(mailbox, mail_query)
 
 
-def query_credit_card_debit_posted():
+def query_credit_card_debit_posted(mailbox):
     mail_query = f'"Credit Card Debit Posted" {QUERY_TIMERANGE}'
-    return query_mailbox(mail_query)
+    return query_mailbox(mailbox, mail_query)

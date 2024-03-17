@@ -61,7 +61,6 @@ format.
 The files for the Grafana dashboards are under examples/dashboards/
 
 I tried my best to write a useful dashboard, but it is definitely catered to my use case.
-![finance_dashboards_example.PNG](examples/finance_dashboards_example.PNG)
 
 ## Internal Details
 This application is actually a spinoff of a much larger application. I tried to make it as isolated and single-purpose as

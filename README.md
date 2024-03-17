@@ -45,7 +45,9 @@ displays.
 This application relies on you to set up transaction and balance notifications to be emailed to you on an individual basis.
 This can typically be accomplished with every bank and financial institution, though European banks sometimes have the
 benefit of an API to work with. My setup has all banks, credit cards, and investment firms forwarding all transactions
-and daily balance reports to my email. My email has a filter set up to label all those emails and move them out of the 
+and daily balance reports to my email. 
+![finance_dashboards_example.PNG](examples/fidelity_alert.PNG)
+My email has a filter set up to label all those emails and move them out of the 
 inbox but leave them unread. I have Home Assistant running an IMAP watcher on that label which then calls the URL for
 this application, triggering the reading, parsing, and importing of the transaction email. The parsed transaction is
 then inserted into a database for Grafana to read and display. Grafana has immense data search capabilities and is a

@@ -2,6 +2,7 @@
 
 Import financial transaction logs from emailed alerts and inject them into a database. Once they are in the database
 they can be cataloged and displayed by a front end such as Grafana.
+![finance_dashboards_example.PNG](examples/finance_dashboards_example.PNG)
 
 ## Build
 

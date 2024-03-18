@@ -30,14 +30,6 @@ def determine_institution(text):
     else:
         return None
 
-
-def parse_headers(headers):
-    parsed_headers = {}
-    for header in headers:
-        parsed_headers[header['name']] = header['value']
-    return parsed_headers
-
-
 def parse_message_text(part):
     text = None
     try:
@@ -51,37 +43,33 @@ def parse_message_text(part):
 
 
 def parse_email_message(msg):
-    payload = msg['payload']
-    headers = parse_headers(payload['headers'])  # Could pick out from the title if it's an email we know how to parse
-    from_name = headers['From']
-    subject = headers['Subject']
+    headers = msg.headers  # Could pick out from the title if it's an email we know how to parse
+    from_name = headers['from'][0]
+    subject = headers['subject'][0]
     try:
         # Extract the Epoch whenever possible. There are ~6 date fields, only trust the one from the mail server
-        epoch = int(headers['ARC-Seal'].split('; ')[2].split('=')[1])
+        epoch = int(headers['arc-seal'][0].split('; ')[2].split('=')[1])
         date = datetime.datetime.fromtimestamp(epoch)
-        headers['Date'] = date
+        headers['date'] = date
     except ValueError:
         logger.error('Could not parse date as standard format.')
 
     # No idea why they added that, should be removed
-    headers['Message-ID'] = headers['Message-ID'].replace('>', '').replace('<', '').replace('-', '')
-    message_id = headers['Message-ID']
+    headers['message-id'] = headers['message-id'][0].replace('>', '').replace('<', '').replace('-', '')
+    message_id = headers['message-id']
 
-    if 'parts' in payload.keys():
-        # Not sure if I need to take apart the other parts, the first part appears to have the plain text
-        text = parse_message_text(payload['parts'][0])
-    else:
-        text = parse_message_text(payload)
+    text = msg.text
+    html = msg.html
     if 'gas station' in text in text:
         # These are usually duplicate messages, can be ignored
         return
     result = {
-        'payload': payload,
         'headers': headers,
         'from_name': from_name,
         'subject': subject,
         'message_id': message_id,
-        'text': text
+        'text': text,
+        'html': html,
     }
     return result
 

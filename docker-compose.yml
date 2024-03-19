@@ -3,24 +3,57 @@ services:
   home_lab:
     image: transaction_importer
     container_name: transaction_importer
-#    dns:
-#      - 192.168.0.12
     ports:
       - "5010:5010"
     env_file:
       - .env
     restart: unless-stopped
-    volumes:
-      - './credentials/:/usr/src/app/credentials'
-#    networks:
-#      - traefik_net
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.docker.network=traefik_net"
-#      - "traefik.http.routers.transaction_importer.rule=Host(`transaction-importer.$MY_DOMAIN`)"
-#      - "traefik.http.routers.transaction_importer.tls.certresolver=dns-cloudflare"
-#      - "traefik.http.services.transaction_importer.loadbalancer.server.port=5010"
+    networks:
+      - transaction_importer_net
+      - db_net
 
-#networks:
-#  traefik_net:
-#    external: true
+  mysql:
+    image: mysql
+    container_name: transaction_importer_db
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./docker/mysql/:/docker-entrypoint-initdb.d/
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: finance_dashboards_example
+    networks:
+      - db_net
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    restart: unless-stopped
+    user: "1000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - type: bind
+        source: ./docker/grafana/dashboard.yml
+        target: /etc/grafana/provisioning/dashboards/main.yaml
+      - type: bind
+        source: ./docker/grafana/datasource.yml
+        target: /etc/grafana/provisioning/datasources/main.yaml
+      - ./docker/grafana/dashboards/:/var/lib/grafana/dashboards/
+    environment:
+      GF_SECURITY_ADMIN_USER: "${GRAFANA_USERNAME}"
+      GF_SECURITY_ADMIN_PASSWORD: "${GRAFANA_PASSWORD}"
+      GF_INSTALL_PLUGINS: "grafana-clock-panel,natel-discrete-panel,grafana-piechart-panel"
+      GF_PATHS_LOGS: "/logs"
+      GF_LOG_MODE: "console file"
+    networks:
+      - db_net
+      - transaction_importer_net
+
+networks:
+  transaction_importer_net:
+    external: false
+  db_net:
+    external: false

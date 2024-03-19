@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_BRIAN_HOME",
-      "label": "Brian Home",
+      "name": "DS_MYSQL",
+      "label": "mysql",
       "description": "",
       "type": "datasource",
       "pluginId": "mysql",
@@ -50,26 +50,13 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": null,
-  "links": [
-    {
-      "asDropdown": false,
-      "icon": "dashboard",
-      "includeVars": false,
-      "keepTime": false,
-      "tags": [],
-      "targetBlank": false,
-      "title": "Finances",
-      "tooltip": "",
-      "type": "link",
-      "url": "https://grafana.setupjustforme.com/d/bfc4f69d-b862-435b-908a-4ebfa3e1b106/financial-transactions"
-    }
-  ],
+  "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -158,10 +145,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -207,7 +194,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -296,10 +283,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -332,7 +319,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -421,10 +408,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -457,7 +444,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -546,10 +533,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -582,7 +569,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -671,10 +658,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -707,7 +694,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -796,10 +783,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -845,7 +832,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -934,10 +921,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -970,7 +957,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1059,10 +1046,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -1095,7 +1082,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1184,10 +1171,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -1220,7 +1207,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1309,10 +1296,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -1345,7 +1332,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1434,10 +1421,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -1470,7 +1457,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1559,10 +1546,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -1595,7 +1582,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1683,10 +1670,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -1719,7 +1706,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1807,10 +1794,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -1843,7 +1830,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1931,10 +1918,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -1967,7 +1954,7 @@
     {
       "datasource": {
         "type": "mysql",
-        "uid": "${DS_BRIAN_HOME}"
+        "uid": "${DS_MYSQL}"
       },
       "fieldConfig": {
         "defaults": {
@@ -2055,10 +2042,10 @@
       "pluginVersion": "10.2.3",
       "targets": [
         {
-          "dataset": "brian_home",
+          "dataset": "finance_dashboards_example",
           "datasource": {
             "type": "mysql",
-            "uid": "${DS_BRIAN_HOME}"
+            "uid": "${DS_MYSQL}"
           },
           "editorMode": "code",
           "format": "table",
@@ -2093,11 +2080,29 @@
   "schemaVersion": 39,
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "mysql",
+          "value": "P430005175C4C7810"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "DS_MYSQL",
+        "options": [],
+        "query": "mysql",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      }
+    ]
   },
   "time": {
-    "from": "now/M",
-    "to": "now"
+    "from": "2024-02-28 00:00:00",
+    "to": "2024-03-15 00:00:00"
   },
   "timepicker": {},
   "timezone": "",

@@ -23,6 +23,8 @@ services:
     volumes:
       - ./docker/mysql/:/docker-entrypoint-initdb.d/
     environment:
+      # This is hard coded because Grafana needs it in order to connect.
+      # Don't do this in production.
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: finance_dashboards_example
     networks:

@@ -1,7 +1,8 @@
 version: '3'
 services:
-  home_lab:
+  transaction_importer:
     image: transaction_importer
+    build: .
     container_name: transaction_importer
     ports:
       - "5010:5010"

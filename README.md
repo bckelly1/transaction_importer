@@ -4,37 +4,40 @@ Import financial transaction logs from emailed alerts and inject them into a dat
 they can be cataloged and displayed by a front end such as Grafana.
 ![finance_dashboards_example.PNG](examples/finance_dashboards_example.PNG)
 
-## Build
-
-1. Run the `build.sh` script to build the docker image.
-
 ## Setup
-For Gmail, you will need to set up a developer account in order to acquire the Gmail API Credentials. The Google Cloud
-Console is [here](https://console.cloud.google.com/apis/api/gmail.googleapis.com/credentials). You may also be able to
-get a similar setup by setting up an IMAP watcher.
+### Email
+For Gmail, you will need to enable app passwords to access your gmail via IMAP. A link to instructions is [here](https://support.google.com/accounts/answer/185833).
+Once you have the credentials, you can add them to a .env file.
 
-Once you have the credentials files (`client_secret.json`, `credentials.json`) you can run the application once on your
-desktop to generate a `token.json` file. This file needs to be generated once per week in my current configuration. I
-would love some pointers to refine this process so please leave me a note!
-```
-./credentials/
-  - client_secret.json
-  - credentials.json
-  - token.json
-```
+I supplied an example .env file, fill it out with the required fields, and optional fields as you see fit.
 
-You need a .env file. I supplied an example .env file, fill it out with the required fields, and optional fields as you
-see fit.
+You will also need the name of the Label (Gmail Folder) of your transactions. I have all my transactions filtered into a
+folder in Gmail and tagged with a Label. That isolates the transactions and allows me to set an IMAP watcher to trigger 
+this importer to run whenever a new transaction appears in Gmail. With this setup, I can automatically import new 
+transactions within seconds of swiping my card.
 
-You will also need your LabelId of your transactions. I have all my transactions filtered into a folder in Gmail and
-tagged with a Label. That isolates the transactions and allows me to set an IMAP watcher to trigger this importer to run
-whenever a new transaction appears in Gmail. With this setup, I can automatically import new transactions within seconds
-of swiping my card.
+You could probably use another email client, as this project is built around IMAP. I haven't tried it, but it should work.
+
+### Banks and Credit Cards
+You'll need to configure your financial accounts to send you alerts whenever a transaction occurs. Most places have this
+as a mechanism for keeping tabs on secondary account users. Some places also have the ability to send you daily balance
+notifications, which can also be parsed and inserted into finance_accounts table.
+![finance_dashboards_example.PNG](examples/fidelity_alert.PNG)
 
 ## Running
 
 1. Run the docker-compose.yml running `docker compose up -d`
-2. Browse to http://localhost:5010 to see the main landing page
+2. Browse to http://localhost:3000 to see the Grafana dashboard.
+   * admin/password
+   * Click the hamburger in the upper left, click Dashboards, click Financial Transactions
+3. Browse to http://localhost:5010 to see the simple landing page
+   * Clicking Run Transaction Import will trigger an IMAP call to Gmail to import your transactions into the database.
+
+**Note**
+There is a good chance that the import will fail for your bank. There are parsers per-bank that extract the transaction
+information out of the email. Every bank structures the contents of their email differently. This would be an excellent
+opportunity for a ML model to extract the information from the email. But for now...
+You'll have to [write your own parser](https://github.com/bckelly1/transaction_importer/tree/master/src/institution_parser).
 
 ## Background
 This started when Intuit shut down Mint. I was already unhappy that Mint was unable to handle my 2FA for my bank accounts
@@ -46,7 +49,7 @@ This application relies on you to set up transaction and balance notifications t
 This can typically be accomplished with every bank and financial institution, though European banks sometimes have the
 benefit of an API to work with. My setup has all banks, credit cards, and investment firms forwarding all transactions
 and daily balance reports to my email. 
-![finance_dashboards_example.PNG](examples/fidelity_alert.PNG)
+
 My email has a filter set up to label all those emails and move them out of the 
 inbox but leave them unread. I have Home Assistant running an IMAP watcher on that label which then calls the URL for
 this application, triggering the reading, parsing, and importing of the transaction email. The parsed transaction is

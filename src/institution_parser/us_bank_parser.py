@@ -23,7 +23,7 @@ def handle_us_bank_transaction(text, headers):
     logger.info('detail: ' + original_description + "\n")
     return \
         [{
-            'date': headers['Date'],
+            'date': headers['date'],
             'description': short_description,
             'original_description': sections[0] + '. ' + sections[1],
             'amount': amount,

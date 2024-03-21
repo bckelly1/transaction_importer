@@ -60,7 +60,7 @@ def transfer_source_account(title):
 
 # Main handling of the transaction email. Read the transaction and extract transaction details from the text.
 def parse_email_transactions(transaction, headers):
-    transaction_date = headers['Date']
+    transaction_date = headers['date']
     transaction_details_original = transaction.find('td', attrs={'class': 'details'}).text.strip()
     transaction_tokens = transaction_details_original.split(' ')
     merchant_tokens = []
@@ -92,7 +92,7 @@ def parse_email_transactions(transaction, headers):
     logger.info("\tAmount: " + transaction_amount)
 
     return {
-        'date': headers['Date'],
+        'date': headers['date'],
         'description': merchant,
         'original_description': transaction_details_original,
         'amount': amount,

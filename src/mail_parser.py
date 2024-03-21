@@ -79,7 +79,7 @@ def extract_transactions(email_fields):
     if institution == Institution.FIDELITY and 'Transaction' in email_fields['subject']:
         transactions = handle_fidelity_card_transaction(email_fields['text'], email_fields['headers'])
     elif institution == Institution.FIRST_TECH and 'Transaction' in email_fields['subject']:
-        transactions = handle_first_tech_transaction(email_fields['text'], email_fields['headers'])
+        transactions = handle_first_tech_transaction(email_fields['html'], email_fields['headers'])
     elif institution == Institution.US_BANK and 'transaction' in email_fields['subject']:
         transactions = handle_us_bank_transaction(email_fields['text'], email_fields['headers'])
     else:
